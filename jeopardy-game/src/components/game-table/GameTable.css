@@ -1,0 +1,17 @@
+.game-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+  
+  .game-table th, .game-table td {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .game-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  

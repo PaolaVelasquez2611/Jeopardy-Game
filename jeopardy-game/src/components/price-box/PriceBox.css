@@ -1,0 +1,14 @@
+.price-box {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+  }
+  
+  .price-box.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
