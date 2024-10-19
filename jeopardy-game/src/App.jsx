@@ -15,7 +15,23 @@ const App = () => {
   };
 
   const handleSelectQuestion = (rowIndex, cellIndex) => {
-    const question = data[rowIndex + 2][cellIndex + 2]; // Obtener la pregunta de los datos
+    let question;
+    var row, column;
+  
+    // Adjust the offsets based on the rowIndex
+    if (rowIndex === 0 || rowIndex === 1) {
+      row=rowIndex+2;
+    } else if (rowIndex === 2) {
+      row=rowIndex+5;
+    } else if (rowIndex >= 3) {
+      row=rowIndex+8;
+    }
+    // Adjust the offsets based on the Column
+    column=cellIndex+(cellIndex+2);
+
+    question = data[row][column]; 
+  
+    // Set the selected question state
     setSelectedQuestion({ question, rowIndex, cellIndex });
   };
 
