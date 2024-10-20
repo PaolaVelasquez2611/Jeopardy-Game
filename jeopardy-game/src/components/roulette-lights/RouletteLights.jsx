@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import './RouletteLights.css';  // Importar el archivo de estilos
+import React, { useState } from 'react';
+import './RouletteLights.css';  // Import the styles
 
 const RouletteLights = ({ categories, onSelectColumn }) => {
-  const [activeIndex, setActiveIndex] = useState(null);  // Índice de la luz activa
+  const [activeIndex, setActiveIndex] = useState(null);
   const [isSpinning, setIsSpinning] = useState(false);
 
-  // Función para iniciar la ruleta
   const startRoulette = () => {
     setIsSpinning(true);
-    setActiveIndex(0);  // Empezar en la primera luz
+    setActiveIndex(0);
     let intervalCount = 0;
 
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % categories.length);  // Cambiar la luz activa
+      setActiveIndex((prevIndex) => (prevIndex + 1) % categories.length); // Use the length of filtered categories
 
       intervalCount++;
-      if (intervalCount > categories.length * 5) {  // Detener después de varias vueltas
+      if (intervalCount > categories.length * 5) {
         clearInterval(interval);
-        const randomIndex = Math.floor(Math.random() * categories.length);  // Seleccionar una columna aleatoria
-        setActiveIndex(randomIndex);  // Detener en la columna seleccionada
+        const randomIndex = Math.floor(Math.random() * categories.length); // Select from the 10 categories
+        setActiveIndex(randomIndex);
         setIsSpinning(false);
-        onSelectColumn(randomIndex);  // Notificar a la tabla que se seleccionó una columna
+        onSelectColumn(randomIndex); // Notify GameTable of the selected column
       }
-    }, 150);  // Velocidad de la ruleta
+    }, 150); // Speed of the roulette
   };
 
   return (
@@ -31,7 +30,7 @@ const RouletteLights = ({ categories, onSelectColumn }) => {
         {categories.map((category, index) => (
           <div
             key={index}
-            className={`light ${index === activeIndex ? 'active' : ''}`}  // Agregar clase activa si la luz está encendida
+            className={`light ${index === activeIndex ? 'active' : ''}`} // Highlight active light
           >
             {category}
           </div>

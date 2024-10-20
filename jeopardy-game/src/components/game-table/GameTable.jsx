@@ -5,7 +5,7 @@ import './GameTable.css';
 const GameTable = ({ data, onSelect, selectedQuestions, selectedColumn }) => {
   // Filter only category columns (ignore the columns with answers)
   const categories = data[1].filter((_, index) => ![1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21].includes(index)); 
-  console.log("categories", categories);
+  console.log("categories", categories); // Only 10 categories should be here now
 
   // Extract prices (points) for each row from the first column (Column A)
   const prices = data

@@ -64,9 +64,12 @@ const App = () => {
       {!data && <UploadScreen onFileUpload={handleFileUpload} />}
       {data && (
         <>
-          {/* Asegurémonos de pasar la fila correcta para las categorías */}
+          {/* Asegúrate de tomar solo las categorías necesarias */}
           <RouletteLights
-            categories={data[1].slice(2)}  // Asegúrate de tomar la segunda fila (row 1), y omitimos las dos primeras columnas
+            categories={data[1] // Extract the correct categories
+              .filter((_, index) => ![1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21].includes(index)) // Filter only the correct columns
+              .slice(0, 10) // Limit to 10 categories
+            }
             onSelectColumn={handleSelectColumn}  // Pasar la función para manejar la columna seleccionada
           />
           <GameTable
