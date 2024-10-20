@@ -1,22 +1,34 @@
 import React from 'react';
 import './QuestionPopup.css';  // Import corresponding CSS file
 
-const QuestionPopup = ({ question, isBooleanQuestion, onClose, onCorrect, onWrong }) => {
+const QuestionPopup = ({ 
+  question, 
+  isBooleanQuestion, 
+  correctAnswer, 
+  userAnswer,  // Receive userAnswer as a prop
+  hasAnswered, 
+  onClose, 
+  onAnswer 
+}) => {
   return (
     <div className="question-popup">
       <div className="question-content">
-        <h2>{question}</h2>
+        <h2>{question || "Loading question..."}</h2> {/* Display a loading message if question is not set */}
         <div className="buttons">
           {/* Conditionally render buttons for boolean questions (True/False) */}
-          {isBooleanQuestion ? (
+          {!hasAnswered && isBooleanQuestion ? (
             <>
-              <button className="correct" onClick={onCorrect}>True</button>
-              <button className="wrong" onClick={onWrong}>False</button>
+              <button className="true-button" onClick={() => onAnswer('TRUE')}>True</button>
+              <button className="false-button" onClick={() => onAnswer('FALSE')}>False</button>
             </>
+          ) : hasAnswered && isBooleanQuestion ? (
+            <p className="answer-feedback">
+              Your answer: {userAnswer}. The correct answer was: {correctAnswer}  {/* Show user's answer and correct answer */}
+            </p>
           ) : (
             <>
-              <button className="correct" onClick={onCorrect}>Correct</button>
-              <button className="wrong" onClick={onWrong}>Wrong</button>
+              <button className="correct" onClick={() => onAnswer('Correct')}>Correct</button>
+              <button className="wrong" onClick={() => onAnswer('Wrong')}>Wrong</button>
             </>
           )}
         </div>

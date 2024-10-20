@@ -8,8 +8,11 @@ const App = () => {
   const [data, setData] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
-  const [selectedColumn, setSelectedColumn] = useState(null);  // Columna seleccionada por la ruleta
-  const [isBooleanQuestion, setIsBooleanQuestion] = useState(false);  // New state to track if it's a boolean question
+  const [selectedColumn, setSelectedColumn] = useState(null);
+  const [isBooleanQuestion, setIsBooleanQuestion] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [hasAnswered, setHasAnswered] = useState(false);
+  const [userAnswer, setUserAnswer] = useState(null);  // Track the user's answer
 
   const handleFileUpload = (parsedData) => {
     setData(parsedData);
@@ -17,9 +20,9 @@ const App = () => {
 
   const handleSelectQuestion = (rowIndex, cellIndex) => {
     let question;
-    var row, column;
+    let correctAnswer = null;
+    let row, column;
 
-    // Adjust the offsets based on the rowIndex
     if (rowIndex === 0 || rowIndex === 1) {
       row = rowIndex + 2;
     } else if (rowIndex === 2) {
@@ -27,40 +30,48 @@ const App = () => {
     } else if (rowIndex >= 3) {
       row = rowIndex + 8;
     }
-    
-    // Adjust the offsets based on the Column
-    column = cellIndex + (cellIndex + 2);
 
+    column = cellIndex + (cellIndex + 2);
     question = data[row][column];
 
-    // Determine if the question is a 200-point (boolean) question by checking the points
-    const price = data[row][0];  // Assuming the price (points) is in the first column
-    const isBoolean = price === 200;  // Set this to true if the price is 200
+    const price = data[row][0];
+    const isBoolean = price === 200;
 
-    // Set the selected question and whether it's a boolean question
+    if (isBoolean) {
+      const booleanColumns = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
+      const correctAnswerColumn = booleanColumns[cellIndex];
+      correctAnswer = data[2][correctAnswerColumn];
+    }
+
     setSelectedQuestion({ question, rowIndex, cellIndex });
     setIsBooleanQuestion(isBoolean);
+    setCorrectAnswer(correctAnswer);
+    setHasAnswered(false);
+    setUserAnswer(null);  // Reset user's answer
   };
 
   const handleClosePopup = () => {
     setSelectedQuestion(null);
-    setIsBooleanQuestion(false);  // Reset the boolean question state when closing
+    setIsBooleanQuestion(false);
+    setCorrectAnswer(null);
+    setHasAnswered(false);
+    setUserAnswer(null);  // Reset user's answer when closing
   };
 
-  const handleCorrect = () => {
-    setSelectedQuestions([
-      ...selectedQuestions,
-      { ...selectedQuestion, isCorrect: true } // Marca como correcta
-    ]);
+  const handleCorrect = (isCorrect) => {
+    setSelectedQuestions([...selectedQuestions, { ...selectedQuestion, isCorrect }]);
     handleClosePopup();
   };
-  
-  const handleWrong = () => {
-    setSelectedQuestions([
-      ...selectedQuestions,
-      { ...selectedQuestion, isCorrect: false } // Marca como incorrecta
-    ]);
-    handleClosePopup();
+
+  const handleAnswerBoolean = (userAnswer) => {
+    setUserAnswer(userAnswer);  // Store the user's answer
+    setHasAnswered(true);  // Mark the question as answered
+
+    // Wait for 2 seconds before determining if the answer was correct
+    setTimeout(() => {
+      const wasCorrect = correctAnswer === userAnswer;  // Compare user's answer with correct answer
+      handleCorrect(wasCorrect);  // Pass the boolean result
+    }, 2000);
   };
 
   const handleSelectColumn = (columnIndex) => {
@@ -90,10 +101,12 @@ const App = () => {
       {selectedQuestion && (
         <QuestionPopup
           question={selectedQuestion.question}
-          isBooleanQuestion={isBooleanQuestion}  // Pass whether it's a boolean question
+          isBooleanQuestion={isBooleanQuestion}
+          correctAnswer={correctAnswer}
+          userAnswer={userAnswer}  // Pass userAnswer to QuestionPopup
+          hasAnswered={hasAnswered}
           onClose={handleClosePopup}
-          onCorrect={handleCorrect}
-          onWrong={handleWrong}
+          onAnswer={handleAnswerBoolean}
         />
       )}
     </div>
