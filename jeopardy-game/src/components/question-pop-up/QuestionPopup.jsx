@@ -1,14 +1,14 @@
 import React from 'react';
 import './QuestionPopup.css';  // Import corresponding CSS file
 
-const QuestionPopup = ({ 
-  question, 
-  isBooleanQuestion, 
-  correctAnswer, 
+const QuestionPopup = ({
+  question,
+  isBooleanQuestion,
+  correctAnswer,
   userAnswer,  // Receive userAnswer as a prop
-  hasAnswered, 
-  onClose, 
-  onAnswer 
+  hasAnswered,
+  onClose,
+  onAnswer
 }) => {
   return (
     <div className="question-popup">

@@ -58,7 +58,9 @@ const App = () => {
     setUserAnswer(null);  // Reset user's answer when closing
   };
 
-  const handleCorrect = (isCorrect) => {
+  const handleCorrect = (answer) => {
+    // Ensure answer is being processed correctly for non-boolean questions
+    const isCorrect = answer === 'Correct';  // 'Correct' string is interpreted as true
     setSelectedQuestions([...selectedQuestions, { ...selectedQuestion, isCorrect }]);
     handleClosePopup();
   };
@@ -66,11 +68,13 @@ const App = () => {
   const handleAnswerBoolean = (userAnswer) => {
     setUserAnswer(userAnswer);  // Store the user's answer
     setHasAnswered(true);  // Mark the question as answered
-
+  
     // Wait for 2 seconds before determining if the answer was correct
     setTimeout(() => {
-      const wasCorrect = correctAnswer === userAnswer;  // Compare user's answer with correct answer
-      handleCorrect(wasCorrect);  // Pass the boolean result
+      // Compare boolean answers: both correctAnswer and userAnswer are strings 'TRUE' or 'FALSE'
+      const wasCorrect = correctAnswer === userAnswer;  // This was working before, keep it simple
+      setSelectedQuestions([...selectedQuestions, { ...selectedQuestion, isCorrect: wasCorrect }]);
+      handleClosePopup();
     }, 2000);
   };
 
@@ -99,15 +103,15 @@ const App = () => {
         </>
       )}
       {selectedQuestion && (
-        <QuestionPopup
-          question={selectedQuestion.question}
-          isBooleanQuestion={isBooleanQuestion}
-          correctAnswer={correctAnswer}
-          userAnswer={userAnswer}  // Pass userAnswer to QuestionPopup
-          hasAnswered={hasAnswered}
-          onClose={handleClosePopup}
-          onAnswer={handleAnswerBoolean}
-        />
+         <QuestionPopup
+         question={selectedQuestion.question}
+         isBooleanQuestion={isBooleanQuestion}
+         correctAnswer={correctAnswer}
+         userAnswer={userAnswer}  // Pass userAnswer to QuestionPopup
+         hasAnswered={hasAnswered}
+         onClose={handleClosePopup}
+         onAnswer={isBooleanQuestion ? handleAnswerBoolean : handleCorrect}  // Distinguish between boolean and normal questions
+       />
       )}
     </div>
   );
