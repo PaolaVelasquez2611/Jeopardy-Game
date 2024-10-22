@@ -1,25 +1,33 @@
 .price-box {
   padding: 10px;
-  border: 2px solid #000;
-  background-color: #fff;
+  background-color: rgba(60, 108, 221, 0.8);
   cursor: pointer;
-  font-size: 16px;
+  width: 100%;
+  height: fit-content;
+  border-radius: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  color: aliceblue;
 }
 
 .price-box:hover {
-  background-color: #f0f0f0;
+  background-color: #45d8f6;
+  color: #202858;
 }
 
 .price-box.disabled {
-  background-color: #ccc;
+  background-color: #202858;
+  ;
   cursor: not-allowed;
-  border-color: #999;
 }
 
 .price-box.correct-answer {
-  background-color: #28a745; /* Verde para respuestas correctas */
+  background-color: #30c152;
+  /* Verde para respuestas correctas */
 }
 
 .price-box.wrong-answer {
-  background-color: #dc3545; /* Rojo para respuestas incorrectas */
+  background-color: #cb3e4c;
+  /* Rojo para respuestas incorrectas */
 }

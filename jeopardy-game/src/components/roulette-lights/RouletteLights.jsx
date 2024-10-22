@@ -25,7 +25,14 @@ const RouletteLights = ({ categories, onSelectColumn }) => {
   };
 
   return (
+
     <div className="roulette-lights">
+      <div className='button-container'>
+        <h1 id='title'>JEOPARDY</h1>
+        <button className='play-button' onClick={startRoulette} disabled={isSpinning}>
+          {isSpinning ? 'Spinning...' : 'Play'}
+        </button>
+      </div>
       <div className="lights-row">
         {categories.map((category, index) => (
           <div
@@ -36,9 +43,7 @@ const RouletteLights = ({ categories, onSelectColumn }) => {
           </div>
         ))}
       </div>
-      <button onClick={startRoulette} disabled={isSpinning}>
-        {isSpinning ? 'Spinning...' : 'Play'}
-      </button>
+
     </div>
   );
 };
