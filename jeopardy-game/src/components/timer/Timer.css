@@ -1,0 +1,35 @@
+
+.timer {
+    position: relative;
+    bottom: 0 px;
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: rgba(84, 92, 255, 0.179);
+    width: 95%;
+    height: 50px; /* You can adjust the height as needed */
+    background-color: #3b2c70; /* Background color of the entire timer */
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .progress-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #a76cff; /* Color for the draining bar */
+    transition: width 1s linear; /* Smooth draining animation */
+    z-index: 1; /* Ensures it's behind the text */
+  }
+  
+  .timer-text {
+    position: relative;
+    font-size: 18px;
+    color: #ffffff; /* Text color on top of the progress background */
+    z-index: 2; /* Ensures text stays on top of the progress background */
+  }
+  
+  

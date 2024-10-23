@@ -1,4 +1,5 @@
 import React from 'react';
+import Timer from '../timer/Timer';
 import './QuestionPopup.css';  // Import corresponding CSS file
 
 const QuestionPopup = ({
@@ -51,6 +52,7 @@ const QuestionPopup = ({
           ) : null}
         </div>
       </div>
+      <Timer></Timer>
       <button className="close-popup" onClick={onClose}>Close</button>
     </div>
   );
