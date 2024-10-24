@@ -38,14 +38,25 @@ const UploadScreen = ({ onFileUpload }) => {
     }
   };
 
+  const handleButtonClick = () => {
+    const form = document.getElementById('upload-form');
+    form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+  };
+
   return (
     <div className="upload-screen">
-      <h1>Upload Excel File</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="file" accept=".xlsx, .xls" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <h1 id='upload-title'>Welcome to Jeopardy!</h1>
+      <h1 id='upload-title'>Upload your Excel File to Start</h1>
+      <div className='events-container'>
+        {/* Move form submission logic here */}
+        <form id="upload-form" onSubmit={handleSubmit}>
+          <input type="file" accept=".xlsx, .xls" onChange={handleFileChange} />
+        </form>
+        <button type="button" onClick={handleButtonClick}>Start</button>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
+      {/* Add download link for template */}
+      <p>Don't have the template? <a href="https://docs.google.com/spreadsheets/d/19P4CwiDr9u4YJqldjNhnQWUZ8qDaAJGY/export?format=xlsx" download="Jeopardy_Template.xlsx">Download the template here</a></p>
     </div>
   );
 };
