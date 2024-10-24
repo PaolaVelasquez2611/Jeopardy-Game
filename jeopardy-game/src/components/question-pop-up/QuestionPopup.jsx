@@ -52,8 +52,10 @@ const QuestionPopup = ({
           ) : null}
         </div>
       </div>
+      <div className='end-section'>
       <Timer></Timer>
       <button className="close-popup" onClick={onClose}>Close</button>
+      </div>
     </div>
   );
 };
