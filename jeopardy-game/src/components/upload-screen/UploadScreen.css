@@ -31,6 +31,13 @@
     color: white;
     border-radius: 5px;
     background-color: rgb(255, 0, 136);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .upload-screen button:hover {
+    background-color: rgb(177, 10, 99);
+    transform: scale(1.1);
   }
 
   #upload-title {
