@@ -40,23 +40,23 @@ const App = () => {
 
     const price = data[row][0];
 
-    // Boolean question handling (Price 200)
-    if (price === 200) {
+    // Boolean question handling (Price 200) here
+    if (price === "$200") {
         const booleanColumns = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
         const correctAnswerColumn = booleanColumns[cellIndex];
         correctAnswer = data[2][correctAnswerColumn];
         setIsBooleanQuestion(true);
         setIsMultipleChoice(false);
     }
-    // Multiple-choice question handling (Price 400 or 600)
-    else if (price === 400 || price === 600) {
+    // Multiple-choice question handling (Price 400 or 600) here
+    else if (price === "$400" || price === "$600") {
         const multipleChoiceColumnsAnswers = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
         const correctAnswerColumn = multipleChoiceColumnsAnswers[cellIndex];
-        const correctAnswerRow = price === 400 ? 3 : 7;  // Row 4 for 400-category, row 8 for 600-category
+        const correctAnswerRow = price === "$400" ? 3 : 7;  // Row 4 for 400-category, row 8 for 600-category
         correctAnswer = data[correctAnswerRow][correctAnswerColumn];
 
-        // Extract the multiple-choice options (A, B, C)
-        const optionsStartRow = price === 400 ? 4 : 8;
+        // Extract the multiple-choice options (A, B, C) here
+        const optionsStartRow = price === "$400" ? 4 : 8;
         const options = [
             data[optionsStartRow][column],     // Option A
             data[optionsStartRow + 1][column], // Option B
@@ -68,7 +68,7 @@ const App = () => {
         setIsBooleanQuestion(false);
     }
     // Handling questions for price 800 and above (considered single-answer)
-    else if (price >= 800) {
+    else if (price >= "$800") {
         // Assuming questions above 600 are single-answer, handle accordingly
         correctAnswer = data[row][column]; // Assuming the answer is still in the same column for 800+
         setIsMultipleChoice(false); // Not a multiple-choice question
