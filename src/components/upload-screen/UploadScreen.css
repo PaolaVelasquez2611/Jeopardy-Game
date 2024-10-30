@@ -1,52 +1,63 @@
 .upload-screen {
-    text-align: center;
-    margin: 0 auto;
-    position: relative;
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    color: black;
-    width: 800px;
-    height: fit-content;
-    border-radius: 10px;
-    left: 0;
-  }
-  
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  color: black;
+  width: 800px;
+  height: fit-content;
+  border-radius: 10px;
+  left: 0;
+}
 
-  .upload-screen input {
-    border: none;
-    width: fit-content;
-    background-color: rgb(235, 235, 235);
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .upload-screen button {
-    padding: 10px 20px;
-    margin: 40px;
-    margin-top: 10px;
-    font-size: 16px;
-    border: none;
-    width: 200px;
-    height: 50px;
-    color: white;
-    border-radius: 5px;
-    background-color: rgb(255, 0, 136);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
+.upload-screen input {
+  border: none;
+  width: fit-content;
+  background-color: rgb(235, 235, 235);
+  padding: 10px;
+  border-radius: 5px;
+}
 
-  .upload-screen button:hover {
-    background-color: rgb(177, 10, 99);
-    transform: scale(1.1);
-  }
+.upload-screen button {
+  padding: 10px 20px;
+  margin: 40px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  width: 200px;
+  height: 50px;
+  color: white;
+  border-radius: 5px;
+  background-color: rgb(255, 0, 136);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
 
-  #upload-title {
-    color: black;
-  }
-  
-  .events-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.upload-screen button:disabled {
+  background-color: rgb(180, 180, 180); /* Faded color when disabled */
+  cursor: not-allowed;
+  transform: none; /* No scaling effect when disabled */
+}
+
+.upload-screen button:hover:not(:disabled) {
+  background-color: rgb(177, 10, 99);
+  transform: scale(1.1);
+}
+
+#error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#upload-title {
+  color: black;
+}
+
+.events-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

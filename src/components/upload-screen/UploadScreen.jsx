@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
-import './UploadScreen.css';  // Import corresponding CSS file
+import './UploadScreen.css';
 
 const UploadScreen = ({ onFileUpload }) => {
   const [file, setFile] = useState(null);
@@ -9,6 +9,7 @@ const UploadScreen = ({ onFileUpload }) => {
   // This function will handle the file upload and parsing
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+    setErrorMessage('');  // Clear any previous error message when a new file is selected
   };
 
   const handleSubmit = (e) => {
@@ -48,14 +49,18 @@ const UploadScreen = ({ onFileUpload }) => {
       <h1 id='upload-title'>Welcome to Jeopardy!</h1>
       <h1 id='upload-title'>Upload your Excel File to Start</h1>
       <div className='events-container'>
-        {/* Move form submission logic here */}
         <form id="upload-form" onSubmit={handleSubmit}>
           <input type="file" accept=".xlsx, .xls" onChange={handleFileChange} />
         </form>
-        <button type="button" onClick={handleButtonClick}>Start</button>
+        <button 
+          type="button" 
+          onClick={handleButtonClick} 
+          disabled={!file}  // Disable button if no file is selected
+        >
+          Start
+        </button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
-      {/* Add download link for template */}
       <p>Don't have the template? <a href="https://docs.google.com/spreadsheets/d/19P4CwiDr9u4YJqldjNhnQWUZ8qDaAJGY/export?format=xlsx" download="Jeopardy_Template.xlsx">Download the template here</a></p>
     </div>
   );
