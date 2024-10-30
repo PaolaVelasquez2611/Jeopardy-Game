@@ -37,7 +37,9 @@ const GameTable = ({ data, onSelect, selectedQuestions, selectedColumn }) => {
                 );
                 const hasAnswered = !!selected;
                 const isCorrect = selected ? selected.isCorrect : null;
-                const isDisabled = selectedColumn !== null && selectedColumn !== cellIndex;
+
+                // Disable all cells when `selectedColumn` is null, only enable the selected column
+                const isDisabled = selectedColumn === null || selectedColumn !== cellIndex;
 
                 return (
                   <PriceBox
