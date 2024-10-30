@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Braah+One&family=Rowdies:wght@300&display=swap');
 .price-box {
-  padding: 10px;
   background-color: rgba(60, 108, 221, 0.8);
   cursor: pointer;
   width: 100%;
-  height: fit-content;
+  height: 100%;
   border-radius: 5px;
   font-size: 30px;
+  font-weight: 50;
   cursor: pointer;
   border: none;
+  font-family: 'Black Han Sans', sans-serif;
   color: aliceblue;
 }
 

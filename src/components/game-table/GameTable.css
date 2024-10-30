@@ -1,20 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Braah+One&family=Rowdies:wght@300&display=swap');
+
 .game-table {
-    width: 100%;
+    width: 100%;  /* Full viewport width */
+    height: 100%; /* Full viewport height */
     border-collapse: collapse;
-    margin: 20px auto;
-    margin: 0 auto;
+    border-spacing: 0;      /* Remove space between cells */
   }
   
   .game-table th, .game-table td {
+    width: 10vw; /* Width based on viewport width */
+    height: 6vh; /* Height based on viewport height */
     border: none;
-    padding: 15px;
+    margin: 10px;
+    padding: 10px;  /* Control vertical padding (top) */
     text-align: center;
     border-radius: 10px;
+    font-family: 'Braah One', sans-serif;
     font-size: 20px;
   }
   
   .game-table th {
-
     background-color: none;
     color: aliceblue;
     font-weight: bold;

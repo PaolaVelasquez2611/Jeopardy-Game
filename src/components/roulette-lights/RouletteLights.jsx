@@ -25,12 +25,11 @@ const RouletteLights = ({ categories, onSelectColumn }) => {
   };
 
   return (
-
     <div className="roulette-lights">
       <div className='button-container'>
-        <h1 id='title'>JEOPARDY</h1>
+        {/* <h1 id='title'>JEOPARDY</h1> */}
         <button className='play-button' onClick={startRoulette} disabled={isSpinning}>
-          {isSpinning ? 'Spinning...' : 'Play'}
+          {isSpinning ? 'Spinning...' : 'Jeopardize!'}
         </button>
       </div>
       <div className="lights-row">
