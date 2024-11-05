@@ -39,6 +39,7 @@ const QuestionPopup = ({
               <button className="option-a" onClick={() => onAnswer('A')}>{multipleChoiceOptions[0]}</button>
               <button className="option-b" onClick={() => onAnswer('B')}>{multipleChoiceOptions[1]}</button>
               <button className="option-c" onClick={() => onAnswer('C')}>{multipleChoiceOptions[2]}</button>
+              <button className="option-d" onClick={() => onAnswer('D')}>{multipleChoiceOptions[3]}</button>
             </>
           ) : hasAnswered && isMultipleChoice ? (
             <p className="answer-feedback">

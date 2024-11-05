@@ -190,6 +190,21 @@
     align-self: flex-end;
     transition: transform 0.3s ease;
   }
+  .option-d{
+    padding: 10px 20px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
+    cursor: pointer;
+    background-color: rgb(235, 142, 247);
+    border: none;
+    color: rgb(41, 4, 45);
+    border-radius: 5px;
+    width: 400px;
+    height: 100px;
+    margin: 2%;
+    align-self: flex-end;
+    transition: transform 0.3s ease;
+  }
 
   .option-a:hover {
     background-color: rgb(198, 158, 73);

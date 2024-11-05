@@ -9,8 +9,8 @@ const GameTable = ({ data, onSelect, selectedQuestions, selectedColumn }) => {
 
   // Extract prices (points) for each row from the first column (Column A)
   const prices = data
-    .slice(2, 17) // Slice the rows for the game board
-    .filter((_, rowIndex) => ![2, 3, 4, 6, 7, 8].includes(rowIndex)) // Filter out rows that don't belong to the board
+    .slice(2, 19) // Slice the rows for the game board
+    .filter((_, rowIndex) => ![2, 3, 4, 5, 7, 8, 9,10].includes(rowIndex)) // Filter out rows that don't belong to the board
     .map(row => row[0]); // Get the price from column A
 
   return (

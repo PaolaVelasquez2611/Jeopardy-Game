@@ -30,9 +30,9 @@ const App = () => {
     if (rowIndex === 0 || rowIndex === 1) {
         row = rowIndex + 2;
     } else if (rowIndex === 2) {
-        row = rowIndex + 5;
+        row = rowIndex + 6;
     } else if (rowIndex >= 3) {
-        row = rowIndex + 8;
+        row = rowIndex + 10;
     }
 
     // Calculate the column for the question
@@ -53,15 +53,16 @@ const App = () => {
     else if (price === "$400" || price === "$600") {
         const multipleChoiceColumnsAnswers = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
         const correctAnswerColumn = multipleChoiceColumnsAnswers[cellIndex];
-        const correctAnswerRow = price === "$400" ? 3 : 7;  // Row 4 for 400-category, row 8 for 600-category
+        const correctAnswerRow = price === "$400" ? 3 : 8;  // Row 4 for 400-category, row 8 for 600-category
         correctAnswer = data[correctAnswerRow][correctAnswerColumn];
 
         // Extract the multiple-choice options (A, B, C) here
-        const optionsStartRow = price === "$400" ? 4 : 8;
+        const optionsStartRow = price === "$400" ? 4 : 9;
         const options = [
             data[optionsStartRow][column],     // Option A
             data[optionsStartRow + 1][column], // Option B
             data[optionsStartRow + 2][column], // Option C
+            data[optionsStartRow + 3][column], // Option D
         ];
 
         setMultipleChoiceOptions(options);
