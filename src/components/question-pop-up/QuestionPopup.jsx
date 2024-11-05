@@ -3,6 +3,7 @@ import Timer from '../timer/Timer';
 import './QuestionPopup.css';  // Import corresponding CSS file
 
 const QuestionPopup = ({
+  category,  // New prop to receive the category
   question,
   isBooleanQuestion,
   isMultipleChoice,   // New prop to handle multiple-choice questions
@@ -15,14 +16,16 @@ const QuestionPopup = ({
 }) => {
   return (
     <div className="question-popup">
+      {/* Display the category title */}
+      <h2 className="popup-category-title">{category}</h2>
       <div className="question-content">
         <h2>{question || "Loading question..."}</h2> {/* Display the question or a loading message */}
         <div className="buttons">
           {/* Conditionally render buttons for boolean questions (True/False) */}
           {!hasAnswered && isBooleanQuestion ? (
             <>
-              <button className="true-button" onClick={() => onAnswer('TRUE')}>True</button>
               <button className="false-button" onClick={() => onAnswer('FALSE')}>False</button>
+              <button className="true-button" onClick={() => onAnswer('TRUE')}>True</button>
             </>
           ) : hasAnswered && isBooleanQuestion ? (
             <p className="answer-feedback">
@@ -46,8 +49,8 @@ const QuestionPopup = ({
           {/* Render for manual correct/wrong input if it's not boolean or multiple-choice */}
           {!hasAnswered && !isBooleanQuestion && !isMultipleChoice ? (
             <>
-              <button className="correct" onClick={() => onAnswer('Correct')}>Correct</button>
               <button className="wrong" onClick={() => onAnswer('Wrong')}>Wrong</button>
+              <button className="correct" onClick={() => onAnswer('Correct')}>Correct</button>
             </>
           ) : null}
         </div>

@@ -9,6 +9,7 @@ const App = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [selectedColumn, setSelectedColumn] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);  // New state for selected category
   const [isBooleanQuestion, setIsBooleanQuestion] = useState(false);
   const [isMultipleChoice, setIsMultipleChoice] = useState(false);  // To track multiple-choice questions
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
@@ -79,6 +80,10 @@ const App = () => {
     setCorrectAnswer(correctAnswer);
     setHasAnswered(false);
     setUserAnswer(null);
+    
+    const selectedCategory = data[1][column]; // Retrieve the category using calculated column index
+    setSelectedCategory(selectedCategory);
+
 };
 
   const handleClosePopup = () => {
@@ -121,8 +126,8 @@ const App = () => {
     }, 2000);
   };
 
-  const handleSelectColumn = (columnIndex) => {
-    setSelectedColumn(columnIndex);
+  const handleSelectColumn = (columnIndex) => {    
+    setSelectedColumn(columnIndex); // Use the provided columnIndex if needed elsewhere
   };
 
   return (
@@ -147,6 +152,7 @@ const App = () => {
       )}
       {selectedQuestion && (
         <QuestionPopup
+          category={selectedCategory} // Pass selected category here
           question={selectedQuestion.question}
           isBooleanQuestion={isBooleanQuestion}
           isMultipleChoice={isMultipleChoice}

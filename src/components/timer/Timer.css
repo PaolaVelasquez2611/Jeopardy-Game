@@ -26,7 +26,8 @@
   
   .timer-text {
     position: relative;
-    font-size: 18px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     color: #030c26; /* Text color on top of the progress background */
     z-index: 2; /* Ensures text stays on top of the progress background */
   }

@@ -1,14 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Braah+One&family=Rowdies:wght@300&display=swap');
+
+.popup-category-title {
+  font-size: 56px;
+  font-family: 'Black Han Sans', sans-serif;
+  color: rgb(255, 0, 136); /* Adjust color for better visibility */
+}
+
 .question-popup {
     position: fixed;
     top: 50%;
     left: 50%;
+    font-family: 'Rowdies', sans-serif;
     transform: translate(-50%, -50%);
     background-color: white;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 30px;
     z-index: 1000;
-    width: 80%;
-    height: 80%;
+    width: 85%;
+    height: 85%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -17,55 +26,60 @@
   }
   
   .question-popup h2 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .question-popup .buttons  {
    display: flex;
    flex-direction: row;
+   justify-content: center;
   }
   
   .correct {
-    background-color: green;
+    background-color: rgb(70, 186, 43);
     color: white;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    width: 200px;
-    height: 50px;
+    width: 400px;
+    height: 100px;
     margin: 2%;
     align-self: flex-end;
     transition: transform 0.3s ease;
   }
 
   .correct:hover {
-    background-color: rgb(11, 88, 11);
+    background-color: rgb(37, 133, 16);
     transform: scale(1.1);
   }
 
   .wrong:hover {
-    background-color: rgb(135, 18, 28);
+    background-color: rgb(164, 18, 20);;
     transform: scale(1.1);
   }
   
   .wrong {
-    background-color: red;
+    background-color: rgb(236, 63, 67);
     color: white;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    width: 200px;
-    height: 50px;
+    width: 400px;
+    height: 100px;
     margin: 2%;
     align-self: flex-end;
     transition: transform 0.3s ease;
   }
   
   .close-popup {
+    font-size: 16px;
+    font-family: 'Black Han Sans', sans-serif;
     margin-top: 20px;
     width: 100px;
     background-color: rgb(215, 213, 213);
@@ -78,7 +92,6 @@
   }
 
   .close-popup:hover {
-   
     background-color: rgb(153, 153, 153);
     transform: scale(1.1);
    
@@ -86,14 +99,15 @@
   
   .true-button {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
-    background-color: rgb(239, 17, 255);
+    background-color: rgb(33, 189, 214);
     border: none;
     color: white;
     border-radius: 5px;
-    width: 200px;
-    height: 50px;
+    width: 400px;
+    height: 100px;
     margin: 2%;
     align-self: flex-end;
     transition: transform 0.3s ease;
@@ -101,28 +115,29 @@
 
   .true-button:hover {
   
-    background-color: rgb(172, 42, 186);
+    background-color: rgb(12, 123, 140);
     transform: scale(1.1);
     
   }
 
   .false-button:hover {
   
-    background-color: rgb(75, 57, 180);
+    background-color: rgb(199, 147, 4);
     transform: scale(1.1);
     
   }
 
   .false-button {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
-    background-color: rgb(94, 68, 239);
+    background-color: rgb(254, 195, 29);
     border: none;
     color: aliceblue;
     border-radius: 5px;
-    width: 200px;
-    height: 50px;
+    width: 400px;
+    height: 100px;
     margin: 2%;
     align-self: flex-end;
     transition: transform 0.3s ease;
@@ -130,14 +145,15 @@
 
   .option-a{
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
     background-color: rgb(239, 202, 68);
     border: none;
     color: rgb(45, 16, 4);
     border-radius: 5px;
-    width: 200px;
-    height: 50px;
+    width: 400px;
+    height: 100px;
     margin: 2%;
     align-self: flex-end;
     transition: transform 0.3s ease;
@@ -145,14 +161,15 @@
 
   .option-b{
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
     background-color: rgb(52, 202, 205);
     border: none;
     color: rgb(4, 38, 45);
     border-radius: 5px;
-    width: 200px;
-    height: 50px;
+    width: 400px;
+    height: 100px;
     margin: 2%;
     align-self: flex-end;
     transition: transform 0.3s ease;
@@ -160,14 +177,15 @@
 
   .option-c{
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 22px;
+    font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
     background-color: rgb(235, 142, 247);
     border: none;
     color: rgb(41, 4, 45);
     border-radius: 5px;
-    width: 200px;
-    height: 50px;
+    width: 400px;
+    height: 100px;
     margin: 2%;
     align-self: flex-end;
     transition: transform 0.3s ease;
@@ -198,11 +216,12 @@
 
   .question-content{
     font-size: 35px;
+    text-align: center;
   }
 
   .end-section{
-    margin-top: 10%;
-    width: 70%;
+    margin-top: 40px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
