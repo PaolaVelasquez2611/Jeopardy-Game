@@ -29,10 +29,32 @@
     margin-bottom: 10px;
   }
   
-  .question-popup .buttons  {
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
+  .question-popup .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .question-popup .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .answer-feedback {
+    margin-top: 20px;
+    font-size: 40px;
+    color: rgb(45, 16, 4);
+    text-align: center;
+  }
+
+  .feedback-correct {
+    color: green;
+  }
+  
+  .feedback-wrong {
+    color: red;
   }
   
   .correct {
@@ -48,7 +70,8 @@
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 4px 6px 10px rgba(37, 133, 16, 0.475) /* Floating shadow effect */
   }
 
   .correct:hover {
@@ -74,7 +97,8 @@
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: -4px 6px 10px rgba(164, 18, 20, 0.475) /* Floating shadow effect */
   }
   
   .close-popup {
@@ -110,7 +134,8 @@
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 4px 6px 10px rgba(12, 123, 140, 0.475) /* Floating shadow effect */
   }
 
   .true-button:hover {
@@ -122,7 +147,7 @@
 
   .false-button:hover {
   
-    background-color: rgb(199, 147, 4);
+    background-color: rgb(200, 132, 22);
     transform: scale(1.1);
     
   }
@@ -132,7 +157,7 @@
     font-size: 22px;
     font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
-    background-color: rgb(254, 195, 29);
+    background-color: rgb(254, 168, 29);
     border: none;
     color: aliceblue;
     border-radius: 5px;
@@ -140,7 +165,8 @@
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: -4px 6px 10px rgba(200, 132, 22, 0.475) /* Floating shadow effect */
   }
 
   .option-a{
@@ -148,15 +174,16 @@
     font-size: 22px;
     font-family: 'Black Han Sans', sans-serif;
     cursor: pointer;
-    background-color: rgb(254, 195, 29);
+    background-color: rgb(254, 168, 29);
     border: none;
-    color: rgb(45, 16, 4);
+    color: white;
     border-radius: 5px;
     width: 350px;
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: -4px 6px 10px rgba(200, 132, 22, 0.475) /* Floating shadow effect */
   }
 
   .option-b{
@@ -166,13 +193,14 @@
     cursor: pointer;
     background-color: rgb(33, 189, 214);
     border: none;
-    color: rgb(4, 38, 45);
+    color: white;
     border-radius: 5px;
     width: 350px;
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: -4px 6px 10px rgba(12, 123, 140, 0.475) /* Floating shadow effect */
   }
 
   .option-c{
@@ -182,13 +210,14 @@
     cursor: pointer;
     background-color: rgb(236, 63, 67);
     border: none;
-    color: rgb(41, 4, 45);
+    color: white;
     border-radius: 5px;
     width: 350px;
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 4px 6px 10px rgba(164, 18, 20, 0.475) /* Floating shadow effect */
   }
   .option-d{
     padding: 10px 20px;
@@ -197,17 +226,18 @@
     cursor: pointer;
     background-color: rgb(70, 186, 43);
     border: none;
-    color: rgb(41, 4, 45);
+    color: white;
     border-radius: 5px;
     width: 350px;
     height: 100px;
     margin: 2%;
     align-self: flex-end;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 4px 6px 10px rgba(37, 133, 16, 0.475) /* Floating shadow effect */
   }
 
   .option-a:hover {
-    background-color: rgb(199, 147, 4);;
+    background-color: rgb(200, 132, 22);;
     color: aliceblue;
     transform: scale(1.1);
   }

@@ -107,13 +107,13 @@ const App = () => {
     setUserAnswer(userAnswer);  // Store the user's answer
     setHasAnswered(true);  // Mark the question as answered
 
-    // Wait for 2 seconds before determining if the answer was correct
+    // Wait for X seconds before determining if the answer was correct
     setTimeout(() => {
       // Compare boolean answers: both correctAnswer and userAnswer are strings 'TRUE' or 'FALSE'
       const wasCorrect = correctAnswer === userAnswer;  // This was working before, keep it simple
       setSelectedQuestions([...selectedQuestions, { ...selectedQuestion, isCorrect: wasCorrect }]);
       handleClosePopup();
-    }, 2000);
+    }, 5000);
   };
 
   const handleAnswerMultipleChoice = (userAnswer) => {
@@ -124,7 +124,7 @@ const App = () => {
       const wasCorrect = correctAnswer === userAnswer;
       setSelectedQuestions([...selectedQuestions, { ...selectedQuestion, isCorrect: wasCorrect }]);
       handleClosePopup();
-    }, 2000);
+    }, 5000);
   };
 
   const handleSelectColumn = (columnIndex) => {    
