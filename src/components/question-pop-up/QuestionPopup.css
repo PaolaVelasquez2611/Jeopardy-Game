@@ -50,11 +50,11 @@
   }
 
   .feedback-correct {
-    color: green;
+    color: rgb(70, 186, 43);
   }
   
   .feedback-wrong {
-    color: red;
+    color: rgb(255, 0, 136);
   }
   
   .correct {
@@ -102,23 +102,27 @@
   }
   
   .close-popup {
-    font-size: 16px;
-    font-family: 'Black Han Sans', sans-serif;
-    margin-top: 20px;
-    width: 100px;
-    background-color: rgb(215, 213, 213);
-    padding: 10px 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     border: none;
+    background-color: rgb(215, 213, 213);
     color: black;
-    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
-
+  
   .close-popup:hover {
     background-color: rgb(153, 153, 153);
     transform: scale(1.1);
-   
   }
   
   .true-button {

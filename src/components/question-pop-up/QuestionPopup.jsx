@@ -21,9 +21,9 @@ const QuestionPopup = ({
   ];
 
   const incorrectMessages = [
-    `Good try! The correct answer was: ${correctAnswer}. Keep it up!`,
-    `Almost! Your answer was ${userAnswer}, but the correct answer was: ${correctAnswer}. You'll get it next time!`,
-    `Not quite right! The correct answer was: ${correctAnswer}. Don't give up!`
+    <>Good try! The correct answer was: <span style={{ color: 'rgb(60, 108, 221', fontWeight: 'bold' }}>{correctAnswer}</span>. Keep it up!</>,
+    <>Almost! Your answer was {userAnswer}, but the correct answer was: <span style={{ color: 'rgb(60, 108, 221)', fontWeight: 'bold' }}>{correctAnswer}</span>. You'll get it next time!</>,
+    <>Not quite right! The correct answer was: <span style={{ color: 'rgb(60, 108, 221)', fontWeight: 'bold' }}>{correctAnswer}</span>. Don't give up!</>
   ];
 
   const feedbackMessage = userAnswer === correctAnswer 
@@ -69,7 +69,7 @@ const QuestionPopup = ({
       </div>
       <div className="end-section">
         <Timer />
-        <button className="close-popup" onClick={onClose}>Close</button>
+        <button className="close-popup" onClick={onClose} aria-label="Close">&times;</button>
       </div>
     </div>
   );

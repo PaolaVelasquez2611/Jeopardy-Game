@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./Timer.css"; // CSS for styling
 
 const Timer = () => {
-  const initialTime = 90; // Set the fixed time to 90 seconds
+  const initialTime = 60; // Set the fixed time to 60 seconds
   const [seconds, setSeconds] = useState(initialTime);
 
   useEffect(() => {
