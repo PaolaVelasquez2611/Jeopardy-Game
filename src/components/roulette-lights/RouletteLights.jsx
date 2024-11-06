@@ -1,34 +1,47 @@
 import React, { useState } from 'react';
-import './RouletteLights.css';  // Import the styles
+import './RouletteLights.css';
 
-const RouletteLights = ({ categories, onSelectColumn }) => {
+const RouletteLights = ({ categories, answeredColumns, onSelectColumn }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isSpinning, setIsSpinning] = useState(false);
 
   const startRoulette = () => {
+    const availableCategories = categories
+      .map((category, index) => ({ category, index }))
+      .filter(({ index }) => !answeredColumns.includes(index));
+
+    if (availableCategories.length === 0) {
+      console.warn("All categories are answered.");
+      return;
+    }
+
     setIsSpinning(true);
-    setActiveIndex(0);
     let intervalCount = 0;
 
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % categories.length); // Use the length of filtered categories
+      setActiveIndex((prevIndex) => {
+        let nextIndex = (prevIndex + 1) % categories.length;
+        while (answeredColumns.includes(nextIndex)) {
+          nextIndex = (nextIndex + 1) % categories.length;
+        }
+        return nextIndex;
+      });
 
       intervalCount++;
       if (intervalCount > categories.length * 5) {
         clearInterval(interval);
-        const randomIndex = Math.floor(Math.random() * categories.length); // Select from the 10 categories
+        const randomIndex = availableCategories[Math.floor(Math.random() * availableCategories.length)].index;
         setActiveIndex(randomIndex);
         setIsSpinning(false);
-        onSelectColumn(randomIndex); // Notify GameTable of the selected column
+        onSelectColumn(randomIndex);
       }
-    }, 150); // Speed of the roulette
+    }, 150);
   };
 
   return (
     <div className="roulette-lights">
-      <div className='button-container'>
-        {/* <h1 id='title'>JEOPARDY</h1> */}
-        <button className='play-button' onClick={startRoulette} disabled={isSpinning}>
+      <div className="button-container">
+        <button className="play-button" onClick={startRoulette} disabled={isSpinning}>
           {isSpinning ? 'Spinning...' : 'Jeopardize!'}
         </button>
       </div>
@@ -36,13 +49,12 @@ const RouletteLights = ({ categories, onSelectColumn }) => {
         {categories.map((category, index) => (
           <div
             key={index}
-            className={`light ${index === activeIndex ? 'active' : ''}`} // Highlight active light
+            className={`light ${index === activeIndex ? 'active' : ''} ${answeredColumns.includes(index) ? 'answered' : ''}`}
           >
             {category}
           </div>
         ))}
       </div>
-
     </div>
   );
 };

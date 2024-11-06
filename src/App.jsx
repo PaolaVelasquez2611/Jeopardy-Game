@@ -9,9 +9,11 @@ const App = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [selectedColumn, setSelectedColumn] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);  // New state for selected category
+  const [answeredColumns, setAnsweredColumns] = useState([]); 
+  const [columnAnswers, setColumnAnswers] = useState({});// Track answered columns
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [isBooleanQuestion, setIsBooleanQuestion] = useState(false);
-  const [isMultipleChoice, setIsMultipleChoice] = useState(false);  // To track multiple-choice questions
+  const [isMultipleChoice, setIsMultipleChoice] = useState(false);
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
@@ -28,11 +30,11 @@ const App = () => {
 
     // Calculate the appropriate row index for the question text
     if (rowIndex === 0 || rowIndex === 1) {
-        row = rowIndex + 2;
+      row = rowIndex + 2;
     } else if (rowIndex === 2) {
-        row = rowIndex + 6;
+      row = rowIndex + 6;
     } else if (rowIndex >= 3) {
-        row = rowIndex + 10;
+      row = rowIndex + 10;
     }
 
     // Calculate the column for the question
@@ -43,49 +45,49 @@ const App = () => {
 
     // Boolean question handling (Price 200) here
     if (price === "$200") {
-        const booleanColumns = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
-        const correctAnswerColumn = booleanColumns[cellIndex];
-        correctAnswer = data[2][correctAnswerColumn];
-        setIsBooleanQuestion(true);
-        setIsMultipleChoice(false);
+      const booleanColumns = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
+      const correctAnswerColumn = booleanColumns[cellIndex];
+      correctAnswer = data[2][correctAnswerColumn];
+      setIsBooleanQuestion(true);
+      setIsMultipleChoice(false);
     }
     // Multiple-choice question handling (Price 400 or 600) here
     else if (price === "$400" || price === "$600") {
-        const multipleChoiceColumnsAnswers = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
-        const correctAnswerColumn = multipleChoiceColumnsAnswers[cellIndex];
-        const correctAnswerRow = price === "$400" ? 3 : 8;  // Row 4 for 400-category, row 8 for 600-category
-        correctAnswer = data[correctAnswerRow][correctAnswerColumn];
+      const multipleChoiceColumnsAnswers = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
+      const correctAnswerColumn = multipleChoiceColumnsAnswers[cellIndex];
+      const correctAnswerRow = price === "$400" ? 3 : 8;  // Row 4 for 400-category, row 8 for 600-category
+      correctAnswer = data[correctAnswerRow][correctAnswerColumn];
 
-        // Extract the multiple-choice options (A, B, C) here
-        const optionsStartRow = price === "$400" ? 4 : 9;
-        const options = [
-            data[optionsStartRow][column],     // Option A
-            data[optionsStartRow + 1][column], // Option B
-            data[optionsStartRow + 2][column], // Option C
-            data[optionsStartRow + 3][column], // Option D
-        ];
+      // Extract the multiple-choice options (A, B, C) here
+      const optionsStartRow = price === "$400" ? 4 : 9;
+      const options = [
+        data[optionsStartRow][column],     // Option A
+        data[optionsStartRow + 1][column], // Option B
+        data[optionsStartRow + 2][column], // Option C
+        data[optionsStartRow + 3][column], // Option D
+      ];
 
-        setMultipleChoiceOptions(options);
-        setIsMultipleChoice(true);
-        setIsBooleanQuestion(false);
+      setMultipleChoiceOptions(options);
+      setIsMultipleChoice(true);
+      setIsBooleanQuestion(false);
     }
     // Handling questions for price 800 and above (considered single-answer)
     else if (price >= "$800") {
-        // Assuming questions above 600 are single-answer, handle accordingly
-        correctAnswer = data[row][column]; // Assuming the answer is still in the same column for 800+
-        setIsMultipleChoice(false); // Not a multiple-choice question
-        setIsBooleanQuestion(false); // Not a boolean question
+      // Assuming questions above 600 are single-answer, handle accordingly
+      correctAnswer = data[row][column]; // Assuming the answer is still in the same column for 800+
+      setIsMultipleChoice(false); // Not a multiple-choice question
+      setIsBooleanQuestion(false); // Not a boolean question
     }
 
     setSelectedQuestion({ question, rowIndex, cellIndex });
     setCorrectAnswer(correctAnswer);
     setHasAnswered(false);
     setUserAnswer(null);
-    
-    const selectedCategory = data[1][column]; // Retrieve the category using calculated column index
-    setSelectedCategory(selectedCategory);
 
-};
+    const categoryColumns = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+    const selectedCategory = data[1][categoryColumns[cellIndex]];
+    setSelectedCategory(selectedCategory);
+  };
 
   const handleClosePopup = () => {
     setSelectedQuestion(null);
@@ -94,6 +96,19 @@ const App = () => {
     setCorrectAnswer(null);
     setHasAnswered(false);
     setUserAnswer(null);
+
+    if (selectedColumn !== null) {
+      // Update the answered questions for the column
+      const updatedColumnAnswers = { ...columnAnswers };
+      updatedColumnAnswers[selectedColumn] = (updatedColumnAnswers[selectedColumn] || 0) + 1;
+
+      setColumnAnswers(updatedColumnAnswers);
+
+      // Mark column as completed if all 9 questions are answered
+      if (updatedColumnAnswers[selectedColumn] === 9 && !answeredColumns.includes(selectedColumn)) {
+        setAnsweredColumns([...answeredColumns, selectedColumn]);
+      }
+    }
   };
 
   const handleCorrect = (answer) => {
@@ -127,7 +142,7 @@ const App = () => {
     }, 5000);
   };
 
-  const handleSelectColumn = (columnIndex) => {    
+  const handleSelectColumn = (columnIndex) => {
     setSelectedColumn(columnIndex); // Use the provided columnIndex if needed elsewhere
   };
 
@@ -141,6 +156,7 @@ const App = () => {
               .filter((_, index) => ![1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21].includes(index))
               .slice(0, 10)
             }
+            answeredColumns={answeredColumns}  // Pass answered columns
             onSelectColumn={handleSelectColumn}
           />
           <GameTable
@@ -153,7 +169,7 @@ const App = () => {
       )}
       {selectedQuestion && (
         <QuestionPopup
-          category={selectedCategory} // Pass selected category here
+          category={selectedCategory}
           question={selectedQuestion.question}
           isBooleanQuestion={isBooleanQuestion}
           isMultipleChoice={isMultipleChoice}
@@ -172,6 +188,5 @@ const App = () => {
     </div>
   );
 };
-
 
 export default App;

@@ -26,6 +26,11 @@
     background-color: #f6ff00;
     box-shadow: 0px 0px 10px 2px rgba(252, 224, 41, 0.8);
   }
+
+  .light.answered {
+    opacity: 0.5;
+    pointer-events: none; /* Optional, if you want to make them unclickable */
+  }
   
   .play-button {
     font-size: 25px;
@@ -43,6 +48,8 @@
     box-shadow: 4px 6px 10px rgba(210, 11, 167, 0.475) /* Floating shadow effect */
   }
 
+  
+  
   .play-button:hover{
     background-color: rgb(177, 10, 99);
     transform: scale(1.1) translateY(-8px); /* Slight upward movement */
