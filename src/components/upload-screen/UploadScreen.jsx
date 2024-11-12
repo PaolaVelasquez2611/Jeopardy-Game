@@ -61,7 +61,7 @@ const UploadScreen = ({ onFileUpload }) => {
         </button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
-      <p>Don't have the template? <a href="https://docs.google.com/spreadsheets/d/19P4CwiDr9u4YJqldjNhnQWUZ8qDaAJGY/export?format=xlsx" download="Jeopardy_Template.xlsx">Download the template here</a></p>
+      <p>Don't have the template? <a href="https://docs.google.com/spreadsheets/d/1o7gMBayquJT52sLKXpuU9q0dn0STJmZd/export?format=xlsx" download="Jeopardy_Template.xlsx">Download the template here</a></p>
     </div>
   );
 };
