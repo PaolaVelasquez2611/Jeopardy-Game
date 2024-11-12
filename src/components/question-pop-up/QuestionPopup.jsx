@@ -21,7 +21,7 @@ const QuestionPopup = ({
   ];
 
   const incorrectMessages = [
-    <>Good try! The correct answer was: <span style={{ color: 'rgb(60, 108, 221', fontWeight: 'bold' }}>{correctAnswer}</span>. Keep it up!</>,
+    <>Good try! The correct answer was: <span style={{ color: 'rgb(60, 108, 221)', fontWeight: 'bold' }}>{correctAnswer}</span>. Keep it up!</>,
     <>Almost! Your answer was {userAnswer}, but the correct answer was: <span style={{ color: 'rgb(60, 108, 221)', fontWeight: 'bold' }}>{correctAnswer}</span>. You'll get it next time!</>,
     <>Not quite right! The correct answer was: <span style={{ color: 'rgb(60, 108, 221)', fontWeight: 'bold' }}>{correctAnswer}</span>. Don't give up!</>
   ];
@@ -46,14 +46,16 @@ const QuestionPopup = ({
               </>
             )}
             {isMultipleChoice && multipleChoiceOptions.map((option, index) => (
-              <button 
-                key={index} 
-                className={`option-${String.fromCharCode(65 + index).toLowerCase()}`} 
-                onClick={() => onAnswer(String.fromCharCode(65 + index))} 
-                disabled={hasAnswered}
-              >
-                {option}
-              </button>
+              <div key={index} className="button-label-container">
+                <button 
+                  className={`option-${String.fromCharCode(65 + index).toLowerCase()}`} 
+                  onClick={() => onAnswer(String.fromCharCode(65 + index))} 
+                  disabled={hasAnswered}
+                >
+                  {option}
+                </button>
+                <span className={`button-label-${String.fromCharCode(65 + index).toLowerCase()}`} >{String.fromCharCode(65 + index)}</span>
+              </div>
             ))}
             {!isBooleanQuestion && !isMultipleChoice && (
               <>

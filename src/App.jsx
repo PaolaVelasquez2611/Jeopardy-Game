@@ -37,28 +37,79 @@ const App = () => {
       row = rowIndex + 10;
     }
 
-    // Calculate the column for the question
-    column = cellIndex + (cellIndex + 2);
-    question = data[row][column];
-
     const price = data[row][0];
+
+    // Calculate the column for the question
+    if(price === "$200" || price === "$400" || price === "$600"){
+      column = cellIndex + (cellIndex + (3+cellIndex));
+    }
+    else{
+      column = cellIndex+(cellIndex+(cellIndex+2));      
+    }
+  
+    question = data[row][column];
 
     // Boolean question handling (Price 200) here
     if (price === "$200") {
-      const booleanColumns = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
+      const booleanColumns = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31];
       const correctAnswerColumn = booleanColumns[cellIndex];
       correctAnswer = data[2][correctAnswerColumn];
+      // Ensure the value is either "TRUE" or "FALSE" and in uppercase
+      try {
+        // Try to convert correctAnswer to a string and make it uppercase
+        correctAnswer = correctAnswer.toString().toUpperCase();
+      } catch (error) {
+        if (error instanceof TypeError) {
+          // Handle the TypeError if correctAnswer is not a valid type for toString()
+          console.error("TypeError: Unable to convert correctAnswer to string and uppercase:", error);
+          // Optionally, assign a default value here
+          correctAnswer = "NOT CHOSEN IN EXCEL TEMPLATE"; // or "TRUE", based on your logic
+        } else {
+          // Handle any other type of errors that may occur
+          console.error("An unexpected error occurred:", error);
+        }
+      }
+
+      if (correctAnswer !== "TRUE" && correctAnswer !== "FALSE") {
+        // Handle the case where the value is not "TRUE" or "FALSE"
+        console.error("Invalid value for correctAnswer:", correctAnswer);
+        // Optionally, you could assign a default value here
+        correctAnswer = "NOT CHOSEN IN EXCEL TEMPLATE"; // or "TRUE" based on your logic
+      }
+      console.log("true_false_answer", correctAnswer);
       setIsBooleanQuestion(true);
       setIsMultipleChoice(false);
     }
     // Multiple-choice question handling (Price 400 or 600) here
     else if (price === "$400" || price === "$600") {
-      const multipleChoiceColumnsAnswers = [3, 5, 7, 9, 11, 13, 15, 17, 19, 21];
+      const multipleChoiceColumnsAnswers = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31];
       const correctAnswerColumn = multipleChoiceColumnsAnswers[cellIndex];
       const correctAnswerRow = price === "$400" ? 3 : 8;  // Row 4 for 400-category, row 8 for 600-category
       correctAnswer = data[correctAnswerRow][correctAnswerColumn];
+      // Ensure the value is either "A,B,C,D" and in uppercase
+      try {
+        // Try to convert correctAnswer to a string and make it uppercase
+        correctAnswer = correctAnswer.toString().toUpperCase();
+      } catch (error) {
+        if (error instanceof TypeError) {
+          // Handle the TypeError if correctAnswer is not a valid type for toString()
+          console.error("TypeError: Unable to convert correctAnswer to string and uppercase:", error);
+          // Optionally, assign a default value here
+          correctAnswer = "NOT CHOSEN IN EXCEL TEMPLATE"; // or "TRUE", based on your logic
+        } else {
+          // Handle any other type of errors that may occur
+          console.error("An unexpected error occurred:", error);
+        }
+      }
 
-      // Extract the multiple-choice options (A, B, C) here
+      if (correctAnswer !== "A" && correctAnswer !== "B" && correctAnswer !== "C" && correctAnswer !== "D") {
+        // Handle the case where the value is not "TRUE" or "FALSE"
+        console.error("Invalid value for correctAnswer:", correctAnswer);
+        // Optionally, you could assign a default value here
+        correctAnswer = "NOT CHOSEN IN EXCEL TEMPLATE"; // or "TRUE" based on your logic
+      }
+      console.log("choice_answer", correctAnswer);
+      // Extract the multiple-choice options (A, B, C, D) here
       const optionsStartRow = price === "$400" ? 4 : 9;
       const options = [
         data[optionsStartRow][column],     // Option A
@@ -84,7 +135,7 @@ const App = () => {
     setHasAnswered(false);
     setUserAnswer(null);
 
-    const categoryColumns = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+    const categoryColumns = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
     const selectedCategory = data[1][categoryColumns[cellIndex]];
     setSelectedCategory(selectedCategory);
   };
@@ -153,7 +204,7 @@ const App = () => {
         <>
           <RouletteLights
             categories={data[1]
-              .filter((_, index) => ![1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21].includes(index))
+              .filter((_, index) => ![1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31].includes(index))
               .slice(0, 10)
             }
             answeredColumns={answeredColumns}  // Pass answered columns

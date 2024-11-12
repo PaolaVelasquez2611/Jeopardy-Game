@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './RouletteLights.css';
 
 const RouletteLights = ({ categories, answeredColumns, onSelectColumn }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isSpinning, setIsSpinning] = useState(false);
+  const lastSelectedIndex = useRef(null);
 
   const startRoulette = () => {
     const availableCategories = categories
@@ -30,7 +31,13 @@ const RouletteLights = ({ categories, answeredColumns, onSelectColumn }) => {
       intervalCount++;
       if (intervalCount > categories.length * 5) {
         clearInterval(interval);
-        const randomIndex = availableCategories[Math.floor(Math.random() * availableCategories.length)].index;
+
+        let randomIndex;
+        do {
+          randomIndex = availableCategories[Math.floor(Math.random() * availableCategories.length)].index;
+        } while (randomIndex === lastSelectedIndex.current && availableCategories.length > 1);
+
+        lastSelectedIndex.current = randomIndex;
         setActiveIndex(randomIndex);
         setIsSpinning(false);
         onSelectColumn(randomIndex);
